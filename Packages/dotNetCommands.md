@@ -1,37 +1,59 @@
-*Link project to SLN:*
+# Common .NET Commands and Practices
+
+## Link Project to Solution (SLN)
+```bash
 dotnet sln add ProjectLocation/projectName.csproj
+```
 
-*Get All Dot Net Templates*
+## Get All .NET Templates
+```bash
 dotnet new list
+```
 
-*Get Help / Properties for a template*
+## Get Help / Properties for a Template
+```bash
 dotnet new **TemplateName** --help
+```
 
-*Add Project Reference*
+## Add Project Reference
+```bash
 dotnet add reference ProjectLocation/ProjectName.csproj
+```
 
-*The Issus For Namespace Not Found*
-**Ctrl+Shift+P** => OmniSharp: Restart OmniSharp
+## Fix Namespace Not Found Issue
+1. Press **Ctrl+Shift+P**.
+2. Select **OmniSharp: Restart OmniSharp**.
 
-*To List All Packages Installed*
+## List All Installed Packages
+```bash
 dotnet list package
+```
 
-*Data Anotation*
+## Data Annotations
+Include the following namespaces for data annotations:
+```csharp
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+```
 
-*Database*
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.EntityFrameworkCore.Tools
-Microsoft.EntityFrameworkCore.Design
+## Database Configuration
+### Required Packages:
+- `Microsoft.EntityFrameworkCore.SqlServer`
+- `Microsoft.EntityFrameworkCore.Tools`
+- `Microsoft.EntityFrameworkCore.Design`
 
-**Instalation** dotnet add package **PackageName** --version #.#.#
+### Installation:
+```bash
+dotnet add package **PackageName** --version #.#.#
+```
 
-
-
-*Add New Migration*
+## Entity Framework Commands
+### Add New Migration
+```bash
 dotnet ef migrations add InitialMigration --startup-project ../TEND.API
+```
 
-*Update Database*
+### Update Database
+```bash
 dotnet ef database update --startup-project ../TEND.API
