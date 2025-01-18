@@ -16,7 +16,11 @@ Install these packages using the .NET CLI:
 
 ```bash
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+```
+```bash
 dotnet add package Microsoft.IdentityModel.Tokens
+```
+```bash
 dotnet add package System.IdentityModel.Tokens.Jwt
 ```
 
