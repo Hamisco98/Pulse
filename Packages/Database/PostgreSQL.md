@@ -71,6 +71,113 @@
 
 ---
 
+## Chapter 1: Setting Up PostgreSQL
+
+### Installing PostgreSQL
+
+#### On Ubuntu
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+
+#### On Windows
+- Download the installer from [PostgreSQL Official Website](https://www.postgresql.org/download/).
+- Follow the installation steps.
+- Start the PostgreSQL service.
+
+#### On macOS
+```bash
+brew install postgresql
+```
+
+### Configuring PostgreSQL
+- Configuring `postgresql.conf` for performance tuning.
+- Managing connections using `pg_hba.conf`.
+- Enabling logging for debugging.
+
+### Connecting to PostgreSQL
+
+Using `psql` (Command Line Interface):
+```bash
+psql -U postgres -h localhost -d my_database
+```
+
+Using GUI tools:
+- PgAdmin
+- DBeaver
+- DataGrip
+
+---
+
+## Chapter 2: Database Management
+
+### Creating a Database
+```sql
+CREATE DATABASE my_database;
+```
+
+### Managing Users and Roles
+```sql
+CREATE USER my_user WITH PASSWORD 'securepassword';
+GRANT ALL PRIVILEGES ON DATABASE my_database TO my_user;
+```
+
+### Database Permissions and Access Control
+```sql
+REVOKE CONNECT ON DATABASE my_database FROM PUBLIC;
+GRANT CONNECT ON DATABASE my_database TO my_user;
+```
+
+---
+
+## Chapter 3: Schemas, Tables, and Data Types
+
+### Understanding Schemas
+Schemas allow organizing database objects into logical groups.
+```sql
+CREATE SCHEMA my_schema;
+```
+
+### Creating and Managing Tables
+```sql
+CREATE TABLE my_schema.users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Data Types in PostgreSQL
+| Property | Data Type | Description |
+|----------|----------|-------------|
+| `id` | `SERIAL` | Auto-incrementing integer key |
+| `name` | `VARCHAR(100)` | String with max 100 characters |
+| `email` | `VARCHAR(255) UNIQUE` | Unique email field |
+| `created_at` | `TIMESTAMP` | Stores the timestamp of record creation |
+
+---
+
+## Chapter 4: Indexes in PostgreSQL
+
+### Types of Indexes
+- **B-Tree Index (Default) 🔥**
+- **Hash Index**
+- **GIN & GiST Indexes** (for full-text search, JSON, and spatial data)
+- **BRIN Indexes** (for large tables with sequential data)
+
+### Creating an Index
+```sql
+CREATE INDEX users_email_idx ON my_schema.users (email);
+```
+
+### Using `LOWER()` for Case-Insensitive Indexing
+```sql
+CREATE INDEX users_email_lower_idx ON my_schema.users (LOWER(email));
+```
+
+
 ## Chapter 5: Triggers, Functions, and Stored Procedures
 
 ### **Understanding Triggers**
